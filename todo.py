@@ -91,18 +91,13 @@ def editar_tarefa(tarefas):
                 tarefas[indice_real]["prioridade"] = "Baixa"
             else:
                 print("⚠️ Prioridade mantida.")
-
-
-            try:
-                indice = int(input("Digite o número da tarefa para remover: "))
-                remover_tarefa(lista_de_tarefas, indice)
-            except ValueError:
-                print("\n❌ Entrada inválida. Por favor, digite um número.")
-        elif escolha == '0':
-            print("\nObrigado por usar o Gerenciador de Tarefas. Até mais!")
-            break
+            print("\n✏️ Tarefa atualizada com sucesso!")
         else:
-            print("\n❌ Opção inválida. Por favor, tente novamente.")
+            print("\n❌ Índice inválido.")
+    except ValueError:
+            print("\n❌ Entrada inválida. Por favor, digite um número.")
+
+            
 
 # Garante que a função main() só será executada quando o script for rodado diretamente
 if __name__ == "__main__":
