@@ -40,16 +40,18 @@ def listar_tarefas(tarefas):
             print(f"{i + 1}. {status} [{tarefas[i]['prioridade']}] {tarefas[i]['descricao']}")
     print("--------------------------")
 
-
-
-def remover_tarefa(tarefas, indice):
-    """Remove uma tarefa da lista com base no seu índice."""
+def marcar_como_concluida(tarefas, indice):
+    """Marca uma tarefa como concluída com base no índice."""
     indice_real = indice - 1
-    if 0 <= indice_real < len(tarefas):
-        tarefa_removida = tarefas.pop(indice_real)
-        print(f"\n🗑️ Tarefa '{tarefa_removida['descricao']}' removida com sucesso!")
+    if indice_real >= 0 and indice_real < len(tarefas):
+        if tarefas[indice_real]["concluida"]:
+            print(f"\n⚠️ A tarefa '{tarefas[indice_real]['descricao']}' já está concluída.")
+        else:
+            tarefas[indice_real]["concluida"] = True
+            print(f"\n✅ Tarefa '{tarefas[indice_real]['descricao']}' marcada como concluída!")
     else:
-        print("\n❌ Índice inválido. Por favor, escolha um número da lista.")
+        print("\n❌ Índice inválido.")
+
 
 def exibir_menu():
     """Exibe o menu de opções para o usuário."""
