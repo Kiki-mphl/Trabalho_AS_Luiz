@@ -21,19 +21,26 @@ def adicionar_tarefa(tarefas, descricao):
             "concluida": False,
             "prioridade": prioridade_texto
         }
-
-def marcar_como_concluida(tarefas, indice): 
-    """Marca uma tarefa como concluída com base no seu índice na lista."""
-    # O índice do usuário começa em 1, mas o da lista em 0
-    indice_real = indice - 1
-    if 0 <= indice_real < len(tarefas):
-        if tarefas[indice_real]["concluida"]:
-            print(f"\n⚠️ A tarefa '{tarefas[indice_real]['descricao']}' já estava marcada como concluída.")
-        else:
-            tarefas[indice_real]["concluida"] = True
-            print(f"\n✅ Tarefa '{tarefas[indice_real]['descricao']}' marcada como concluída!")
+        tarefas.append(nova_tarefa)
+        print(f"\n✅ Tarefa '{descricao}' adicionada com prioridade '{prioridade_texto}'!")
     else:
-        print("\n❌ Índice inválido. Por favor, escolha um número da lista.")
+        print("\n❌ A descrição da tarefa não pode ser vazia.")
+
+def listar_tarefas(tarefas):
+    """Lista todas as tarefas com status e prioridade."""
+    print("\n--- Sua Lista de Tarefas ---")
+    if len(tarefas) == 0:
+        print("Nenhuma tarefa na lista. Adicione uma!")
+    else:
+        for i in range(len(tarefas)):
+            if tarefas[i]["concluida"]:
+                status = "✅"
+            else:
+                status = "◻️"
+            print(f"{i + 1}. {status} [{tarefas[i]['prioridade']}] {tarefas[i]['descricao']}")
+    print("--------------------------")
+
+
 
 def remover_tarefa(tarefas, indice):
     """Remove uma tarefa da lista com base no seu índice."""
