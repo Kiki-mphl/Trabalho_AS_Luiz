@@ -52,15 +52,30 @@ def marcar_como_concluida(tarefas, indice):
     else:
         print("\n❌ Índice inválido.")
 
+def remover_tarefa(tarefas, indice):
+    """Remove uma tarefa com base no índice."""
+    indice_real = indice - 1
+    if indice_real >= 0 and indice_real < len(tarefas):
+        tarefa_removida = tarefas.pop(indice_real)
+        print(f"\n🗑️ Tarefa '{tarefa_removida['descricao']}' removida com sucesso!")
+    else:
+        print("\n❌ Índice inválido.")
 
-def exibir_menu():
-    """Exibe o menu de opções para o usuário."""
-    print("\n--- MENU ---")
-    print("1. Adicionar Tarefa")
-    print("2. Listar Tarefas")
-    print("3. Marcar Tarefa como Concluída")
-    print("4. Remover Tarefa")
-    print("0. Sair")
+def editar_tarefa(tarefas):
+    """Permite editar a descrição e a prioridade de uma tarefa."""
+    listar_tarefas(tarefas)
+    try:
+        indice = int(input("Digite o número da tarefa que deseja editar: "))
+        indice_real = indice - 1
+
+        if indice_real >= 0 and indice_real < len(tarefas):
+            print(f"\nDescrição atual: {tarefas[indice_real]['descricao']}")
+            nova_descricao = input("Digite a nova descrição: ")
+            if nova_descricao != "":
+                tarefas[indice_real]["descricao"] = nova_descricao
+            else:
+                print("⚠️ Descrição mantida.")
+
 
 def main():
     """Função principal que executa o loop do programa."""
