@@ -7,7 +7,7 @@ def adicionar_tarefa(tarefas, descricao):
         print("3. Baixa")
         prioridade = input("Digite o número da prioridade: ")
 
-    if prioridade == "1":
+        if prioridade == "1":
             prioridade_texto = "Alta"
         elif prioridade == "2":
             prioridade_texto = "Média"
@@ -82,8 +82,8 @@ def editar_tarefa(tarefas):
             print("2. Média")
             print("3. Baixa")
             nova_prioridade = input("Digite o número da nova prioridade: ")
-       
-        if nova_prioridade == "1":
+
+            if nova_prioridade == "1":
                 tarefas[indice_real]["prioridade"] = "Alta"
             elif nova_prioridade == "2":
                 tarefas[indice_real]["prioridade"] = "Média"
@@ -91,14 +91,56 @@ def editar_tarefa(tarefas):
                 tarefas[indice_real]["prioridade"] = "Baixa"
             else:
                 print("⚠️ Prioridade mantida.")
+
             print("\n✏️ Tarefa atualizada com sucesso!")
         else:
             print("\n❌ Índice inválido.")
     except ValueError:
-            print("\n❌ Entrada inválida. Por favor, digite um número.")
+        print("\n❌ Entrada inválida. Por favor, digite um número.")
 
-            
+def exibir_menu():
+    """Exibe o menu de opções para o usuário."""
+    print("\n--- MENU ---")
+    print("1. Adicionar Tarefa")
+    print("2. Listar Tarefas")
+    print("3. Marcar Tarefa como Concluída")
+    print("4. Remover Tarefa")
+    print("5. Editar Tarefa")
+    print("0. Sair")
 
-# Garante que a função main() só será executada quando o script for rodado diretamente
+def main():
+    lista_de_tarefas = []
+
+    while True:
+        exibir_menu()
+        escolha = input("Escolha uma opção: ")
+
+        if escolha == '1':
+            descricao = input("Digite a descrição da nova tarefa: ")
+            adicionar_tarefa(lista_de_tarefas, descricao)
+        elif escolha == '2':
+            listar_tarefas(lista_de_tarefas)
+        elif escolha == '3':
+            listar_tarefas(lista_de_tarefas)
+            try:
+                indice = int(input("Digite o número da tarefa para marcar como concluída: "))
+                marcar_como_concluida(lista_de_tarefas, indice)
+            except ValueError:
+                print("\n❌ Entrada inválida. Por favor, digite um número.")
+        elif escolha == '4':
+            listar_tarefas(lista_de_tarefas)
+            try:
+                indice = int(input("Digite o número da tarefa para remover: "))
+                remover_tarefa(lista_de_tarefas, indice)
+            except ValueError:
+                print("\n❌ Entrada inválida. Por favor, digite um número.")
+        elif escolha == '5':
+            editar_tarefa(lista_de_tarefas)
+        elif escolha == '0':
+            print("\n👋 Obrigado por usar o Gerenciador de Tarefas. Até mais!")
+            break
+        else:
+            print("\n❌ Opção inválida. Tente novamente.")
+
 if __name__ == "__main__":
     main()
