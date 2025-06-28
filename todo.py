@@ -76,31 +76,23 @@ def editar_tarefa(tarefas):
             else:
                 print("⚠️ Descrição mantida.")
 
+            print(f"\nPrioridade atual: {tarefas[indice_real]['prioridade']}")
+            print("Escolha a nova prioridade:")
+            print("1. Alta")
+            print("2. Média")
+            print("3. Baixa")
+            nova_prioridade = input("Digite o número da nova prioridade: ")
+       
+        if nova_prioridade == "1":
+                tarefas[indice_real]["prioridade"] = "Alta"
+            elif nova_prioridade == "2":
+                tarefas[indice_real]["prioridade"] = "Média"
+            elif nova_prioridade == "3":
+                tarefas[indice_real]["prioridade"] = "Baixa"
+            else:
+                print("⚠️ Prioridade mantida.")
 
-def main():
-    """Função principal que executa o loop do programa."""
-    # A lista de tarefas (nosso vetor) é criada vazia aqui.
-    # Ela existirá apenas enquanto o programa estiver em execução.
-    lista_de_tarefas = []
 
-    while True:
-        exibir_menu()
-        escolha = input("Escolha uma opção: ")
-
-        if escolha == '1':
-            descricao = input("Digite a descrição da nova tarefa: ")
-            adicionar_tarefa(lista_de_tarefas, descricao)
-        elif escolha == '2':
-            listar_tarefas(lista_de_tarefas)
-        elif escolha == '3':
-            listar_tarefas(lista_de_tarefas)
-            try:
-                indice = int(input("Digite o número da tarefa para marcar como concluída: "))
-                marcar_como_concluida(lista_de_tarefas, indice)
-            except ValueError:
-                print("\n❌ Entrada inválida. Por favor, digite um número.")
-        elif escolha == '4':
-            listar_tarefas(lista_de_tarefas)
             try:
                 indice = int(input("Digite o número da tarefa para remover: "))
                 remover_tarefa(lista_de_tarefas, indice)
