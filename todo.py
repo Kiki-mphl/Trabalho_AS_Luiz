@@ -1,28 +1,28 @@
 def adicionar_tarefa(tarefas, descricao):
-    """
-    Adiciona uma nova tarefa à lista.
-    Uma tarefa é um dicionário com 'descricao' e 'concluida'.
-    """
-    if descricao:  # Garante que a descrição não está vazia
-        nova_tarefa = {"descricao": descricao, "concluida": False}
-        tarefas.append(nova_tarefa)
-        print(f"\n✅ Tarefa '{descricao}' adicionada com sucesso!")
-    else:
-        print("\n❌ A descrição da tarefa não pode ser vazia.")
+    """Adiciona uma nova tarefa à lista com prioridade."""
+    if descricao != "":
+        print("Escolha a prioridade da tarefa:")
+        print("1. Alta")
+        print("2. Média")
+        print("3. Baixa")
+        prioridade = input("Digite o número da prioridade: ")
 
-def listar_tarefas(tarefas):
-    """Lista todas as tarefas, mostrando o status (concluída ou pendente)."""
-    print("\n--- Sua Lista de Tarefas ---")
-    if not tarefas:
-        print("Nenhuma tarefa na lista. Adicione uma!")
-    else:
-        for i, tarefa in enumerate(tarefas):
-            status = "✅" if tarefa["concluida"] else "◻️"
-            # O 'i + 1' é para mostrar um índice amigável ao usuário (começando em 1)
-            print(f"{i + 1}. {status} {tarefa['descricao']}")
-    print("--------------------------")
+    if prioridade == "1":
+            prioridade_texto = "Alta"
+        elif prioridade == "2":
+            prioridade_texto = "Média"
+        elif prioridade == "3":
+            prioridade_texto = "Baixa"
+        else:
+            prioridade_texto = "Baixa"
 
-def marcar_como_concluida(tarefas, indice):
+        nova_tarefa = {
+            "descricao": descricao,
+            "concluida": False,
+            "prioridade": prioridade_texto
+        }
+
+def marcar_como_concluida(tarefas, indice): 
     """Marca uma tarefa como concluída com base no seu índice na lista."""
     # O índice do usuário começa em 1, mas o da lista em 0
     indice_real = indice - 1
